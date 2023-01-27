@@ -1,25 +1,51 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import SubscribeForm from "../components/SubscribeForm.astro";
 
-const issuesEntries = await getCollection('issues');
+const issuesEntries = await getCollection("issues");
 ---
+
 <Layout title="Сова рассылает новости">
-	<main class="container mx-auto px-6">
-		<h1 class="text-7xl mb-10 mt-3">news.sova.dev</h1>
-		<ul class="flex flex-col gap-3">
-			{issuesEntries.reverse().map(issue => (
-				<li class="flex flex-col gap-2">
-					<div>
-						<a class="text-2xl underline hover:no-underline inline-block" href={`/issues/${issue.slug}`}>Сова рассылает выпуск #{issue.data.number}</a>
-					</div>
-					<p>{issue.data.introduction}</p>
-				</li>
-			))}
-		</ul>
-	</main>
+  <main class="container mx-auto px-6 mb-10 max-w-[65ch]">
+    <h1 class="text-7xl mb-10 mt-3 flex">
+      <span>news.</span>
+      <a
+        class="text-violet-800 hover:underline decoration-from-font"
+        href="https://sova.dev"
+        target="_blank">sova.dev</a
+      >
+    </h1>
+    <p>
+      Это веб-версия email-рассылки с подборками статей и инструментов для
+      web-разработчиков. Меня зовут <b>Сергей Сова</b>, я много говорю об
+      effector, пишу на React всё самое сложное, руковожу фронтендом, практикую
+      ночной Rust.
+    </p>
+
+    <SubscribeForm title="Подпишитесь на эту рассылку" />
+
+    <ul class="flex flex-col gap-5">
+      {
+        issuesEntries
+          .sort((a, b) => b.data.number - a.data.number)
+          .map((issue) => (
+            <li class="flex flex-col gap-2">
+              <div class="prose">
+                <a
+                  class="text-2xl underline hover:no-underline inline-block"
+                  href={`/issues/${issue.slug}`}
+                >
+                  Сова рассылает выпуск #{issue.data.number}
+                </a>
+              </div>
+              <p class="prose">{issue.data.introduction}</p>
+            </li>
+          ))
+      }
+    </ul>
+  </main>
 </Layout>
 
-<style>
-</style>
+<style></style>
