@@ -5,9 +5,12 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   ru:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: 🛎️ Checkout
         uses: actions/checkout@v3
@@ -28,7 +31,7 @@ jobs:
         run: pnpm build
 
       - name: 🚀 Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: ./dist
