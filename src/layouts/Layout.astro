@@ -1,22 +1,77 @@
 ---
-import { SEO } from "astro-seo";
+import { SEO, Meta } from "astro-seo";
 export interface Props {
   title: string;
+  description: string;
+  slug: string;
+  image?: string;
+  publishedDate?: Date;
 }
 
-const { title } = Astro.props;
+const { title, description, slug, image, publishedDate } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <SEO
+      charset="UTF-8"
       title={title}
+      description={description}
+      canonical={Astro.url.toString()}
       twitter={{
+        card: image ? "summary_large_image" : "summary",
         creator: "@sova_original",
+        site: "@sova_original",
+        image,
+        title,
+        description,
+      }}
+      openGraph={{
+        basic: {
+          title: title,
+          type: slug === "/" ? "website" : "article",
+          image: image ?? "/banner.jpg",
+          url: Astro.url?.toString(),
+        },
+        image: {
+          alt: title,
+        },
+        article: {
+          publishedTime: publishedDate?.toISOString(),
+        },
+        optional: { description },
+      }}
+      extend={{
+        link: [
+          {
+            rel: "alternate",
+            type: "application/rss+xml",
+            title: "Сова рассылает новости",
+            href: "/rss.xml",
+          },
+        ],
+        meta: [
+          image
+            ? {
+                name: "image",
+                content: image,
+              }
+            : null,
+          {
+            name: "theme-color",
+            content: "#5b21b6",
+          },
+          {
+            name: "color-scheme",
+            content: "dark light",
+          },
+          {
+            name: "viewport",
+            content: "width=device-width,initial-scale=1,viewport-fit=cover",
+          },
+        ].filter(Boolean) as Meta[],
       }}
     />
   </head>

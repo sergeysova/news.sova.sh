@@ -11,9 +11,14 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: "https://news.sova.dev",
+  markdown: {
+    syntaxHighlight: "prism",
+    remarkPlugins: [],
+  },
   integrations: [
     sitemap({
       changefreq: "weekly",
+      priority: 0.7,
     }),
     image({
       serviceEntryPoint: "@astrojs/image/sharp",

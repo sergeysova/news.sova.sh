@@ -7,7 +7,11 @@ import SubscribeForm from "../components/SubscribeForm.astro";
 const issuesEntries = await getCollection("issues");
 ---
 
-<Layout title="Сова рассылает новости">
+<Layout
+  title="Сова рассылает новости"
+  description="Email-рассылка с подборками статей, новостей и инструментов для web-разработчиков"
+  slug="/"
+>
   <main class="container mx-auto px-6 mb-10 max-w-[65ch]">
     <h1 class="text-7xl mb-10 mt-3 flex">
       <span>news.</span>
@@ -18,8 +22,8 @@ const issuesEntries = await getCollection("issues");
       >
     </h1>
     <p>
-      Это веб-версия email-рассылки с подборками статей и инструментов для
-      web-разработчиков. Меня зовут <b>Сергей Сова</b>, я много говорю об
+      Это веб-версия email-рассылки с подборками статей, новостей и инструментов
+      для web-разработчиков. Меня зовут <b>Сергей Сова</b>, я много говорю об
       effector, пишу на React всё самое сложное, руковожу фронтендом, практикую
       ночной Rust.
     </p>

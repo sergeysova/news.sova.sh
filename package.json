@@ -25,6 +25,7 @@
     "@astrojs/prefetch": "^0.1.1",
     "@astrojs/prism": "^2.0.0",
     "@astrojs/react": "^2.0.1",
+    "@astrojs/rss": "^2.1.0",
     "@astrojs/sitemap": "^1.0.0",
     "@astrojs/tailwind": "^3.0.0",
     "@tabler/icons": "^2.1.2",

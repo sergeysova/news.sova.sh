@@ -16,7 +16,13 @@ const { Content } = await issue.render();
 const title = `Сова рассылает выпуск #${issue.data.number}`;
 ---
 
-<Layout title={title}>
+<Layout
+  title={title}
+  description={issue.data.introduction}
+  slug={issue.slug}
+  publishedDate={issue.data.date}
+  image={issue.data.image}
+>
   <main class="container mx-auto mt-6 px-6 max-w-[65ch]">
     <a href="/" class="hover:underline">↵ Вернуться</a>
     <h1 class="text-5xl mb-10 mt-3">{title}</h1>
