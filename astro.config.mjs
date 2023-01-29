@@ -14,6 +14,7 @@ export default defineConfig({
   output: "static",
   base: "/",
   build: {
+    format: "file",
     assets: "assets",
   },
   markdown: {
