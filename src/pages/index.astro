@@ -12,7 +12,7 @@ const issuesEntries = await getCollection("issues");
   description="Email-рассылка с подборками статей, новостей и инструментов для web-разработчиков"
   slug="/"
 >
-  <main class="container mx-auto px-6 mb-10 max-w-[65ch]">
+  <main class="w-full mx-auto px-6 mb-10 max-w-[65ch] xl:max-w-[80ch]">
     <h1 class="text-7xl mb-10 mt-3 flex">
       <span>news.</span>
       <a
@@ -36,7 +36,7 @@ const issuesEntries = await getCollection("issues");
           .sort((a, b) => b.data.number - a.data.number)
           .map((issue) => (
             <li class="flex flex-col gap-2">
-              <div class="prose">
+              <div class="prose max-w-[65ch] xl:max-w-[80ch]">
                 <a
                   class="text-2xl underline hover:no-underline inline-block"
                   href={`/issues/${issue.slug}`}
@@ -44,7 +44,9 @@ const issuesEntries = await getCollection("issues");
                   Сова рассылает выпуск #{issue.data.number}
                 </a>
               </div>
-              <p class="prose">{issue.data.introduction}</p>
+              <p class="prose max-w-[65ch] xl:max-w-[80ch]">
+                {issue.data.introduction}
+              </p>
             </li>
           ))
       }

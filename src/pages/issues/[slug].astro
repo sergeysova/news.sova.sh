@@ -23,10 +23,10 @@ const title = `Сова рассылает выпуск #${issue.data.number}`;
   publishedDate={issue.data.date}
   image={issue.data.image}
 >
-  <main class="container mx-auto mt-6 px-6 max-w-[65ch]">
+  <main class="w-full mx-auto px-6 mb-10 max-w-[65ch] xl:max-w-[80ch]">
     <a href="/" class="hover:underline">↵ Вернуться</a>
     <h1 class="text-5xl mb-10 mt-3">{title}</h1>
-    <div class="prose">
+    <div class="prose max-w-[65ch] xl:max-w-[80ch]">
       <Content />
     </div>
     <a href="/" class="inline-block hover:underline mt-12">↵ Вернуться</a>
