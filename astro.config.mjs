@@ -11,6 +11,11 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: "https://news.sova.dev",
+  output: "static",
+  base: "/",
+  build: {
+    assets: "assets",
+  },
   markdown: {
     syntaxHighlight: "prism",
     remarkPlugins: [],
