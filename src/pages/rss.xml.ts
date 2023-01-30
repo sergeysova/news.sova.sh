@@ -9,11 +9,14 @@ export async function get(context: APIContext) {
     description:
       "Email-рассылка с подборками статей, новостей и инструментов для web-разработчиков",
     site: context.site!.toString(),
-    items: issues.map((issue) => ({
-      title: `Сова рассылает выпуск #${issue.data.number}`,
-      pubDate: new Date(issue.data.date.setHours(11, 0, 0, 0)),
-      description: issue.data.introduction,
-      link: `/issues/${issue.slug}`,
-    })),
+    items: issues
+      .sort((a, b) => b.data.number - a.data.number)
+      .filter((issue) => !issue.data.draft)
+      .map((issue) => ({
+        title: `Сова рассылает выпуск #${issue.data.number}`,
+        pubDate: new Date(issue.data.date.setHours(11, 0, 0, 0)),
+        description: issue.data.introduction,
+        link: `/issues/${issue.slug}`,
+      })),
   });
 }
