@@ -4,6 +4,8 @@ import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import SubscribeForm from "../components/SubscribeForm.astro";
 
+import NewsIcon from "../assets/icons/news.svg";
+
 const issuesEntries = await getCollection("issues");
 ---
 
@@ -12,46 +14,47 @@ const issuesEntries = await getCollection("issues");
   description="Email-рассылка с подборками статей, новостей и инструментов для web-разработчиков"
   slug="/"
 >
-  <main class="w-full mx-auto px-6 mb-10 max-w-[65ch] xl:max-w-[80ch]">
-    <h1 class="text-7xl mb-10 mt-3 flex">
-      <span>news.</span>
-      <a
-        class="text-violet-800 hover:underline decoration-from-font"
-        href="https://sova.dev"
-        target="_blank">sova.dev</a
-      >
-    </h1>
+  <main
+    class="w-full mx-auto px-6 mb-10 max-w-[65ch] md:max-w-[80ch] xl:max-w-[90ch]"
+  >
+    <img src={NewsIcon} class="pr-10 my-10 -ml-36" />
     <p>
       Это веб-версия email-рассылки с подборками статей, новостей и инструментов
-      для web-разработчиков. Меня зовут <b>Сергей Сова</b>, я много говорю об
-      effector, пишу на React всё самое сложное, руковожу фронтендом, практикую
-      ночной Rust.
+      для web-разработчиков. Меня зовут <a
+        href="https://sova.dev"
+        class="font-bold underline hover:no-underline"
+        target="_blank">Сергей Сова</a
+      >, я много говорю об effector, пишу на React всё самое сложное, руковожу
+      фронтендом, практикую ночной Rust.
     </p>
 
     <SubscribeForm title="Подпишитесь на эту рассылку" />
 
-    <ul class="flex flex-col gap-5">
+    <ul class="flex flex-col gap-5 sm:grid sm:grid-cols-2">
       {
         issuesEntries
           .sort((a, b) => b.data.number - a.data.number)
           .map((issue) => (
-            <li class="flex flex-col gap-2">
-              <div class="prose max-w-[65ch] xl:max-w-[80ch]">
-                <a
-                  class="text-2xl underline hover:no-underline inline-block"
-                  href={`/issues/${issue.slug}`}
-                >
-                  Сова рассылает выпуск #{issue.data.number}
-                </a>
-              </div>
-              <p class="prose max-w-[65ch] xl:max-w-[80ch]">
-                {issue.data.introduction}
-              </p>
+            <li
+              class="group flex flex-col rounded-lg gap-2 bg-center bg-cover min-h-[20ch] overflow-hidden sm:first:aspect-video -sm:first:aspect-auto sm:first:col-span-2 "
+              style={{ backgroundImage: `url(${issue.data.image})` }}
+            >
+              <a
+                href={`/issues/${issue.slug}`}
+                class="h-full flex flex-col sm:group-first:justify-end sm:group-first:bg-transparent"
+              >
+                <div class="text-white bg-black/70 backdrop-blur-md h-full sm:group-first:h-max sm:group-hover:bg-transparent sm:group-hover:backdrop-blur-none sm:group-hover:text-transparent">
+                  <span class="inline text-3xl font-light float-right py-3 px-4">
+                    #{issue.data.number}
+                  </span>
+                  <p class="text-md leading-7 text-white max-w-[auto] py-3 px-4 group-first:text-lg sm:group-hover:text-transparent ">
+                    <>{issue.data.introduction}</>
+                  </p>
+                </div>
+              </a>
             </li>
           ))
       }
     </ul>
   </main>
 </Layout>
-
-<style></style>
