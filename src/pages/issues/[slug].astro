@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import SubscribeForm from "../../components/SubscribeForm.astro";
 import Layout from "../../layouts/Layout.astro";
 
+import NewsIcon from "../../assets/icons/news.svg";
+
 export async function getStaticPaths() {
   const issueEntries = await getCollection("issues");
   return issueEntries.map((issue) => ({
@@ -24,12 +26,69 @@ const title = `Сова рассылает выпуск #${issue.data.number}`;
   image={issue.data.image}
 >
   <main class="w-full mx-auto px-6 mb-10 max-w-[65ch] xl:max-w-[80ch]">
+    <img src={NewsIcon} class="pr-10 my-10" />
     <a href="/" class="hover:underline">↵ Вернуться</a>
-    <h1 class="text-5xl mb-10 mt-3">{title}</h1>
-    <div class="prose max-w-[65ch] xl:max-w-[80ch]">
+    <h1
+      class="text-2xl sm:text-3xl md:text-4xl xl:text-5xl mt-8 mb-6 font-medium"
+    >
+      {title}
+    </h1>
+    <div class="mb-5">
+      <relative-time
+        datetime={issue.data.date.toISOString()}
+        format="datetime"
+        precision="day"
+        format-style="short"
+      >
+        {issue.data.date.toLocaleDateString()}
+      </relative-time>
+    </div>
+    <div class="prose markdown max-w-[65ch] xl:max-w-[80ch]">
       <Content />
     </div>
     <a href="/" class="inline-block hover:underline mt-12">↵ Вернуться</a>
     <SubscribeForm title="Получайте больше на почту…" />
   </main>
 </Layout>
+<style is:global>
+  .markdown a {
+    @apply text-sky-600 underline;
+  }
+  .markdown a:hover {
+    @apply no-underline;
+  }
+
+  .markdown h1 {
+    @apply mt-6 mb-4 font-medium text-2xl sm:text-3xl md:text-4xl xl:text-5xl md:mb-5 xl:mb-6;
+    line-height: 1;
+  }
+
+  .markdown h1:not(:first-child) {
+    @apply mt-8;
+  }
+
+  .markdown h2 {
+    @apply mb-2 font-medium text-xl sm:text-2xl md:text-3xl xl:text-4xl md:mb-3 xl:mb-5;
+    line-height: 1;
+  }
+
+  .markdown h2:not(:first-child) {
+    @apply mt-8;
+  }
+
+  .markdown h3 {
+    @apply text-xl mb-2 font-medium;
+    line-height: 1;
+  }
+
+  .markdown h3:not(:first-child) {
+    @apply mt-6;
+  }
+
+  .markdown img {
+    @apply rounded-md shadow-xl mb-[3em];
+  }
+</style>
+<script>
+  import "@github/relative-time-element";
+</script>

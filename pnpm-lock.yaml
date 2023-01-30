@@ -9,6 +9,7 @@ specifiers:
   '@astrojs/rss': ^2.1.0
   '@astrojs/sitemap': ^1.0.0
   '@astrojs/tailwind': ^3.0.0
+  '@github/relative-time-element': ^4.1.5
   '@tabler/icons': ^2.1.2
   '@tailwindcss/typography': ^0.5.9
   '@types/react': ^18.0.21
@@ -34,6 +35,7 @@ dependencies:
   '@astrojs/rss': 2.1.0
   '@astrojs/sitemap': 1.0.0
   '@astrojs/tailwind': 3.0.0_uhsc6pehih5huiqhsy5i7sy5um
+  '@github/relative-time-element': 4.1.5
   '@tabler/icons': 2.1.2
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
@@ -631,6 +633,10 @@ packages:
     os: [win32]
     requiresBuild: true
     optional: true
+
+  /@github/relative-time-element/4.1.5:
+    resolution: {integrity: sha512-WAf1EQV5Sn6jGuAIQur/ztKlEV9R+VHDNwqEbeaOb6s9fiwM5z7+ujlWNZtgFkDp3lF0H8D/f0vdiPlfHz0ZTQ==}
+    dev: false
 
   /@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}
