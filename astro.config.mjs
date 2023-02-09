@@ -10,7 +10,10 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://news.sova.dev",
+  site:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://news.sova.dev",
   output: "static",
   base: "/",
   build: {
