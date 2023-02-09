@@ -38,9 +38,9 @@ const issuesEntries = await getCollection("issues");
             >
               <a
                 href={`/issues/${issue.slug}`}
-                class="h-full absolute sm:relative flex justify-items-stretch flex-col sm:group-first:justify-end sm:group-first:bg-transparent"
+                class="h-full absolute sm:relative flex justify-items-stretch flex-col rounded-lg sm:group-first:justify-end sm:group-first:bg-transparent"
               >
-                <div class="text-white bg-black/70 backdrop-blur-md h-full sm:group-first:h-max sm:group-hover:bg-transparent sm:group-hover:backdrop-blur-none sm:group-hover:text-transparent">
+                <div class="text-white bg-black/70 backdrop-blur-md h-full rounded-lg sm:group-first:h-max sm:group-hover:bg-transparent sm:group-hover:backdrop-blur-none sm:group-hover:text-transparent">
                   <span class="inline text-3xl font-light float-right py-3 px-4">
                     #{issue.data.number}
                   </span>
@@ -49,23 +49,21 @@ const issuesEntries = await getCollection("issues");
                   </p>
                 </div>
               </a>
-              {index === 0 ? (
-                <kbd class="absolute top-0 right-0 hidden group-first:inline-block px-2 py-1 text-white bg-black/30 rounded-bl rounded-tr-md backdrop-blur">
-                  Новый выпуск!
-                  <relative-time
-                    datetime={issue.data.date.toISOString()}
-                    format="datetime"
-                    precision="day"
-                    format-style="short"
-                  />
-                </kbd>
-              ) : null}
             </li>
           ))
       }
     </ul>
   </main>
 </Layout>
+
+<style is:global>
+  .backdrop-blur-md {
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .group:hover .sm\:group-hover\:backdrop-blur-none {
+    -webkit-backdrop-filter: none;
+  }
+</style>
 
 <style>
   .about :global(a) {

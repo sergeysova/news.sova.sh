@@ -1,9 +1,13 @@
 ---
-import { getCollection } from "astro:content";
+import { CollectionEntry, getCollection } from "astro:content";
 import SubscribeForm from "../../components/SubscribeForm.astro";
 import Layout from "../../layouts/Layout.astro";
 
 import NewsIcon from "../../assets/icons/news.svg";
+
+export interface Props {
+  issue: CollectionEntry<"issues">;
+}
 
 export async function getStaticPaths() {
   const issueEntries = await getCollection("issues");
@@ -48,6 +52,7 @@ const title = `Сова рассылает выпуск #${issue.data.number}`;
     </div>
     <a href="/" class="inline-block hover:underline mt-12">↵ Вернуться</a>
     <SubscribeForm title="Получайте больше на почту…" />
+    <save-issue data-number={issue.data.number}></save-issue>
   </main>
 </Layout>
 <style is:global>
@@ -90,5 +95,11 @@ const title = `Сова рассылает выпуск #${issue.data.number}`;
   }
 </style>
 <script>
-  import "@github/relative-time-element";
+  class SaveIssue extends HTMLElement {
+    constructor() {
+      super();
+      localStorage.setItem("previousReadIssue", this.dataset.number!);
+    }
+  }
+  customElements.define("save-issue", SaveIssue);
 </script>

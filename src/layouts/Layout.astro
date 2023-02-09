@@ -41,7 +41,7 @@ const { title, description, slug, image, publishedDate } = Astro.props;
         article: {
           publishedTime: publishedDate?.toISOString(),
         },
-        optional: { description },
+        optional: { description: `${description} ` },
       }}
       extend={{
         link: [
