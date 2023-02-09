@@ -40,7 +40,7 @@ const issuesEntries = await getCollection("issues");
                 href={`/issues/${issue.slug}`}
                 class="h-full absolute sm:relative flex justify-items-stretch flex-col rounded-lg sm:group-first:justify-end sm:group-first:bg-transparent"
               >
-                <div class="text-white bg-black/70 backdrop-blur-md h-full rounded-lg sm:group-first:h-max sm:group-hover:bg-transparent sm:group-hover:backdrop-blur-none sm:group-hover:text-transparent">
+                <div class="text-white bg-black/70 backdrop-blur-md h-full rounded-lg group-first:rounded-t-none sm:group-first:h-max sm:group-hover:bg-transparent sm:group-hover:backdrop-blur-none sm:group-hover:text-transparent">
                   <span class="inline text-3xl font-light float-right py-3 px-4">
                     #{issue.data.number}
                   </span>
