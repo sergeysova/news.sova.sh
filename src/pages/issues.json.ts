@@ -13,7 +13,9 @@ export async function get(context: APIContext) {
           number: issue.data.number,
           slug: issue.slug,
           url: new URL(`/issues/${issue.slug}`, context.site),
-          image: issue.data.image,
+          image: issue.data.image?.startsWith("/")
+            ? new URL(issue.data.image, context.site)
+            : issue.data.image,
           date: issue.data.date,
           description: issue.data.introduction,
         })),
