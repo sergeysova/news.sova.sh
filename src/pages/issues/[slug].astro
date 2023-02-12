@@ -48,42 +48,42 @@ const title = `Сова рассылает выпуск #${issue.data.number}`;
     <save-issue data-number={issue.data.number}></save-issue>
   </main>
 </Layout>
-<style is:global>
-  .markdown a {
+<style>
+  .markdown :global(a) {
     @apply text-sky-600 underline;
   }
-  .markdown a:hover {
+  .markdown :global(a:hover) {
     @apply no-underline;
   }
 
-  .markdown h1 {
+  .markdown :global(h1) {
     @apply mt-6 mb-4 font-medium text-2xl sm:text-3xl md:text-4xl xl:text-5xl md:mb-5 xl:mb-6;
     line-height: 1;
   }
 
-  .markdown h1:not(:first-child) {
+  .markdown :global(h1:not(:first-child)) {
     @apply mt-8;
   }
 
-  .markdown h2 {
+  .markdown :global(h2) {
     @apply mb-2 font-medium text-xl sm:text-2xl md:text-3xl xl:text-4xl md:mb-3 xl:mb-5;
     line-height: 1;
   }
 
-  .markdown h2:not(:first-child) {
+  .markdown :global(h2:not(:first-child)) {
     @apply mt-8;
   }
 
-  .markdown h3 {
+  .markdown :global(h3) {
     @apply text-xl mb-2 font-medium;
     line-height: 1;
   }
 
-  .markdown h3:not(:first-child) {
+  .markdown :global(h3:not(:first-child)) {
     @apply mt-6;
   }
 
-  .markdown img {
+  .markdown :global(img) {
     @apply rounded-lg shadow-xl mb-[3em];
   }
 </style>
