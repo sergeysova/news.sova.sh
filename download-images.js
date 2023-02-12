@@ -4,7 +4,6 @@ import crypto from "node:crypto";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
-import remarkFrontmatter from "remark-frontmatter";
 import { visit } from "unist-util-visit";
 import { read, write } from "to-vfile";
 import { paramCase } from "change-case";
@@ -18,19 +17,19 @@ main().catch(console.error);
 async function main() {
   const processor = unified()
     .use(remarkParse)
-    .use(remarkFrontmatter, ["yaml", "toml"])
     .use(() => (_, file) => {
       matter(file);
     })
     .use(plugin)
     .use(remarkStringify);
-  const issues = (await fs.readdir(ISSUES_PATH)).filter((file) =>
-    file.endsWith(".md")
-  );
+
+  const issues = (await fs.readdir(ISSUES_PATH))
+    .filter((file) => file.endsWith(".md"))
+    .sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+
   for (const issuePath of issues) {
     const vfile = await read(path.join(ISSUES_PATH, issuePath));
     const processed = await processor()
-      .data("file", issuePath)
       .data("issue", issuePath.replace(".md", ""))
       .process(vfile);
     await write(processed);
@@ -57,7 +56,7 @@ function plugin() {
         queue.map(async ({ node }) => {
           const filePath = await downloadImage(node.url, issue);
           if (filePath) {
-            node.url = `/${filePath}`;
+            node.url = filePathToUrlPath(filePath);
           } else {
             console.error(`❗️ Failed to download "${issue}": ${node.url}`);
           }
@@ -91,9 +90,15 @@ async function downloadImage(urlString, issueSlug) {
 
 function createName(urlString) {
   const url = new URL(urlString);
-  const ext = path.extname(urlString) || ".jpg";
+  url.search = "";
+  url.hash = "";
+  const ext = path.extname(url.toString()) || ".jpg";
   const regexp = new RegExp(`${ext}$`);
   const name = paramCase(`${url.hostname}-${url.pathname.replace(regexp, "")}`);
   const hash = crypto.createHash("md5");
   return `${hash.update(name).digest("hex")}${ext}`;
+}
+
+function filePathToUrlPath(filePath) {
+  return filePath.replace(/^public/, "");
 }
