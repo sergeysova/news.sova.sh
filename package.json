@@ -15,15 +15,18 @@
     "@tailwindcss/typography": "^0.5.9",
     "astro": "^2.0.2",
     "astro-compress": "^1.1.28",
+    "change-case": "^4.1.2",
     "prettier": "^2.8.3",
     "prettier-plugin-astro": "^0.8.0",
+    "remark-frontmatter": "^4.0.1",
     "remark-parse": "^10.0.1",
     "remark-stringify": "^10.0.2",
     "rollup": "^3.11.0",
     "sharp": "^0.31.3",
     "to-vfile": "^7.2.4",
     "unified": "^10.1.2",
-    "unist-util-visit": "^4.1.2"
+    "unist-util-visit": "^4.1.2",
+    "vfile-matter": "^4.0.1"
   },
   "dependencies": {
     "@astrojs/image": "^0.13.0",
