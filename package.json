@@ -17,8 +17,13 @@
     "astro-compress": "^1.1.28",
     "prettier": "^2.8.3",
     "prettier-plugin-astro": "^0.8.0",
+    "remark-parse": "^10.0.1",
+    "remark-stringify": "^10.0.2",
     "rollup": "^3.11.0",
-    "sharp": "^0.31.3"
+    "sharp": "^0.31.3",
+    "to-vfile": "^7.2.4",
+    "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.2"
   },
   "dependencies": {
     "@astrojs/image": "^0.13.0",
