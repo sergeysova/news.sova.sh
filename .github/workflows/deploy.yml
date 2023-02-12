@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  news:
     runs-on: ubuntu-latest
     steps:
       - name: 🛎️ Checkout
@@ -30,14 +30,6 @@ jobs:
       - name: 🔧 Build news.sova.dev
         run: pnpm build
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: https://news.sova.dev
-
-    steps:
       - name: 🚀 Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
