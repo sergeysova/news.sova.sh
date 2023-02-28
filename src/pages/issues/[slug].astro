@@ -10,7 +10,10 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const issueEntries = await getCollection("issues");
+  const issueEntries = await getCollection(
+    "issues",
+    (issue) => !issue.data.draft
+  );
   return issueEntries.map((issue) => ({
     params: { slug: issue.slug },
     props: { issue },

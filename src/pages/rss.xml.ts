@@ -3,7 +3,7 @@ import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
 
 export async function get(context: APIContext) {
-  const issues = await getCollection("issues");
+  const issues = await getCollection("issues", (issue) => !issue.data.draft);
   return rss({
     title: "Сова рассылает новости",
     description:
@@ -11,7 +11,6 @@ export async function get(context: APIContext) {
     site: context.site!.toString(),
     items: issues
       .sort((a, b) => b.data.number - a.data.number)
-      .filter((issue) => !issue.data.draft)
       .map((issue) => ({
         title: `Сова рассылает выпуск #${issue.data.number}`,
         pubDate: new Date(issue.data.date.setHours(11, 0, 0, 0)),
