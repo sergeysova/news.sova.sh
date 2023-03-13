@@ -1,0 +1,1 @@
+import"./relative-time-element-define.814d009c.js";class e extends HTMLElement{constructor(){super()}connectedCallback(){void 0!==this.dataset.number&&localStorage.setItem("previousReadIssue",this.dataset.number.toString())}}customElements.define("save-issue",e);
