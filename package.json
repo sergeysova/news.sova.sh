@@ -18,6 +18,7 @@
     "change-case": "^4.1.2",
     "prettier": "^2.8.4",
     "prettier-plugin-astro": "^0.8.0",
+    "rehype-external-links": "^2.0.1",
     "remark-frontmatter": "^4.0.1",
     "remark-parse": "^10.0.1",
     "remark-stringify": "^10.0.2",

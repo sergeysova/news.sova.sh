@@ -23,6 +23,12 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: "prism",
     remarkPlugins: [],
+    rehypePlugins: [
+      [
+        "rehype-external-links",
+        { rel: ["nofollow", "noopener", "noreferrer"], target: ["_blank"] },
+      ],
+    ],
   },
   integrations: [
     sitemap({
