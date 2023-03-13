@@ -1,13 +1,13 @@
 ---
+import type { InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
 import { CollectionEntry, getCollection } from "astro:content";
 import SubscribeForm from "../../components/SubscribeForm.astro";
 import Layout from "../../layouts/Layout.astro";
 
 import NewsIcon from "../../assets/icons/news.svg";
 
-export interface Props {
-  issue: CollectionEntry<"issues">;
-}
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 export async function getStaticPaths() {
   const issueEntries = await getCollection(
@@ -21,6 +21,7 @@ export async function getStaticPaths() {
 }
 
 const { issue } = Astro.props;
+const { slug } = Astro.params;
 const { Content } = await issue.render();
 const title = `Сова рассылает выпуск #${issue.data.number}`;
 ---
