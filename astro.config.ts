@@ -7,6 +7,7 @@ import react from "@astrojs/react";
 import robotsTxt from "astro-robots-txt";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+import rehypeExternalLinks from "rehype-external-links";
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,7 +26,7 @@ export default defineConfig({
     remarkPlugins: [],
     rehypePlugins: [
       [
-        "rehype-external-links",
+        rehypeExternalLinks,
         { rel: ["nofollow", "noopener", "noreferrer"], target: ["_blank"] },
       ],
     ],

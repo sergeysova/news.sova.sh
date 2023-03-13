@@ -12,6 +12,7 @@ specifiers:
   '@github/relative-time-element': ^4.2.3
   '@tabler/icons': ^2.10.0
   '@tailwindcss/typography': ^0.5.9
+  '@types/mdast': ^3.0.10
   '@types/react': ^18.0.28
   '@types/react-dom': ^18.0.11
   astro: ^2.1.2
@@ -19,6 +20,7 @@ specifiers:
   astro-robots-txt: ^0.3.12
   astro-seo: ^0.7.1
   change-case: ^4.1.2
+  mdast: ^3.0.0
   prettier: ^2.8.4
   prettier-plugin-astro: ^0.8.0
   react: ^18.0.0
@@ -50,12 +52,14 @@ dependencies:
   '@types/react-dom': 18.0.11
   astro-robots-txt: 0.3.12
   astro-seo: 0.7.1
+  mdast: 3.0.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   tailwindcss: 3.2.7
 
 devDependencies:
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
+  '@types/mdast': 3.0.10
   astro: 2.1.2_sharp@0.31.3
   astro-compress: 1.1.35
   change-case: 4.1.2
@@ -2483,6 +2487,11 @@ packages:
     resolution: {integrity: sha512-tGvhT94e+cVnQt8JWE9/b3cUQZWS732TJxXHktvP+BYo62PpYD53Ls/6cC60rW21dW+txxiM4zMdc6abASvZKA==}
     dependencies:
       '@types/mdast': 3.0.10
+
+  /mdast/3.0.0:
+    resolution: {integrity: sha512-xySmf8g4fPKMeC07jXGz971EkLbWAJ83s4US2Tj9lEdnZ142UP5grN73H1Xd3HzrdbU5o9GYYP/y8F9ZSwLE9g==}
+    deprecated: '`mdast` was renamed to `remark`'
+    dev: false
 
   /mdn-data/2.0.28:
     resolution: {integrity: sha512-aylIc7Z9y4yzHYAJNuESG3hfhC+0Ibp/MAMiaOZgNv4pmEdFyfZhhhny4MNiAfWdBQ1RQ2mfDWmM1x8SvGyp8g==}
