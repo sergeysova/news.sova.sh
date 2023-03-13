@@ -34,7 +34,7 @@ const title = `Сова рассылает выпуск #${issue.data.number}`;
 >
   <main class="w-full mx-auto px-6 mb-10 max-w-[65ch] md:max-w-[80ch]">
     <img src={NewsIcon} class="pr-10 my-10" />
-    <a href="/" class="hover:underline">↵ На главную</a>
+    <a href="/" class="hover:underline">⇤ На главную</a>
     <h1
       class="text-2xl sm:text-3xl md:text-4xl xl:text-5xl mt-8 mb-6 font-medium"
     >
@@ -90,3 +90,22 @@ const title = `Сова рассылает выпуск #${issue.data.number}`;
     @apply rounded-lg shadow-xl mb-[3em];
   }
 </style>
+<script>
+  import "@github/relative-time-element";
+
+  class SaveIssue extends HTMLElement {
+    constructor() {
+      super();
+    }
+    connectedCallback() {
+      if (this.dataset.number !== undefined) {
+        localStorage.setItem(
+          "previousReadIssue",
+          this.dataset.number.toString()
+        );
+      }
+    }
+  }
+
+  customElements.define("save-issue", SaveIssue);
+</script>
