@@ -14,7 +14,7 @@ export default defineConfig({
   site:
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://news.sova.dev",
+      : "https://news.sova.sh",
   output: "static",
   base: "/",
   build: {
