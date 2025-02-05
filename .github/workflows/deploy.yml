@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🛎️ Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 📦 Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
 
       - name: 🐧 Use Node.js v22.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: v22.x
           cache: "pnpm"
@@ -27,7 +27,7 @@ jobs:
       - name: 🔍 Installation
         run: pnpm install
 
-      - name: 🔧 Build news.sova.dev
+      - name: 🔧 Build news.sova.sh
         run: pnpm build
 
       - name: 🚀 Deploy
