@@ -1,5 +1,7 @@
 ---
-import { SEO, Meta } from "astro-seo";
+import "../styles/global.css";
+
+import { SEO, type Meta } from "astro-seo";
 export interface Props {
   title: string;
   description: string;
@@ -11,7 +13,7 @@ export interface Props {
 const { title, description, slug, image, publishedDate } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru" prefix="og: https://ogp.me/ns#">
   <head>
     <link rel="icon" href="/favicon.png" />
@@ -79,9 +81,18 @@ const { title, description, slug, image, publishedDate } = Astro.props;
   <body class="bg-slate-50">
     <slot />
     <style is:global>
+      @import "../styles/global.css";
+
       code {
-        font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        font-family:
+          Menlo,
+          Monaco,
+          Lucida Console,
+          Liberation Mono,
+          DejaVu Sans Mono,
+          Bitstream Vera Sans Mono,
+          Courier New,
+          monospace;
       }
     </style>
   </body>

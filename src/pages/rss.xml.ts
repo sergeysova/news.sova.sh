@@ -2,7 +2,7 @@ import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
 
-export async function get(context: APIContext) {
+export async function GET(context: APIContext) {
   const issues = await getCollection("issues", (issue) => !issue.data.draft);
   return rss({
     title: "Сова рассылает новости",
@@ -15,7 +15,7 @@ export async function get(context: APIContext) {
         title: `Сова рассылает выпуск #${issue.data.number}`,
         pubDate: new Date(issue.data.date.setHours(11, 0, 0, 0)),
         description: issue.data.introduction,
-        link: `/issues/${issue.slug}`,
+        link: `/issues/${issue.id}`,
       })),
   });
 }
