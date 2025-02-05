@@ -1,0 +1,1 @@
+import"./index.astro_astro_type_script_index_0_lang.BRjP8v8g.js";class e extends HTMLElement{constructor(){super()}connectedCallback(){this.dataset.number!==void 0&&localStorage.setItem("previousReadIssue",this.dataset.number.toString())}}customElements.define("save-issue",e);
